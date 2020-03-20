@@ -16,7 +16,7 @@ const CodeFragmentSchema = new Schema({
     required: true
   },
   ast: {
-    type: String
+    type: Object
   }
 });
 
