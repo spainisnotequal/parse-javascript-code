@@ -1,11 +1,16 @@
-// In develpment, load environment variables (for instance, DEV_DB_URL)
+// In development, load environment variables (for instance, DEV_DB_URL)
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+// Import modules
 const express = require('express');
 const mongoose = require('mongoose');
 
+// Import routes
+const codeFragments = require('./routes/codeFragments');
+
+// Create the Express app
 const app = express();
 
 // Express JSON parser
@@ -18,6 +23,9 @@ const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB_URL;
 mongoose.connect(mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
   .catch(error => console.log("MongoDB connection error: ", error));
+
+// Use Routes
+app.use('/api/codeFragments', codeFragments);
 
 // Configurte port
 const PORT = process.env.PORT || 5000;
