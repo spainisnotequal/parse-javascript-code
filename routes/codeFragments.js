@@ -33,5 +33,14 @@ router.post('/', (req, res) => {
   newCodeFragment.save().then(codeFragment => res.json(codeFragment));
 });
 
+// @route        DELETE api/codeFragments/:id
+// @description  Delete a code fragment
+// @acces        Public
+router.delete('/:id', (req, res) => {
+  CodeFragment.findById(req.params.id)
+    .then(codeFragment => codeFragment.remove().then(() => res.json({ sucess: true })))
+    .catch(error => res.status(404).json({ sucess: false }));
+});
+
 
 module.exports = router;
