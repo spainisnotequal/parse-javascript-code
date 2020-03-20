@@ -21,4 +21,4 @@ const CodeFragmentSchema = new Schema({
 });
 
 // Export the model to be able to import it in other files
-module.export = CodeFragment = mongoose.model('codeFragment', CodeFragmentSchema);
+module.exports = CodeFragment = mongoose.model('codeFragment', CodeFragmentSchema);
