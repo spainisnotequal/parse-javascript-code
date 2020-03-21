@@ -5,11 +5,13 @@ const Schema = mongoose.Schema;
 const CodeFragmentSchema = new Schema({
   author: {
     type: String,
-    max: 100
+    max: 100,
+    default: ''
   },
   source: {
     type: String,
-    max: 200
+    max: 200,
+    default: ''
   },
   code: {
     type: String,
