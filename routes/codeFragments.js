@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const { source, code } = req.body;
   const { owner } = parseGithubURL(source);
-  console.log(owner);
   const ast = acorn.parse(code);
   const newCodeFragment = new CodeFragment({
     author: owner,
