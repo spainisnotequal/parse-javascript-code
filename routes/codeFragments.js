@@ -19,11 +19,15 @@ router.get('/', (req, res) => {
 // @description  Create a code fragment
 // @acces        Public
 router.post('/', (req, res) => {
-  const { source, code } = req.body;
-  const { owner } = parseGithubURL(source);
+
+  const source = req.body.source;
+  const code = req.body.code;
+
+  const author = source ? parseGithubURL(source).owner : '';
   const ast = acorn.parse(code);
+
   const newCodeFragment = new CodeFragment({
-    author: owner,
+    author,
     source,
     code,
     ast
